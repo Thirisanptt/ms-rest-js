@@ -3,6 +3,7 @@
 
 import * as uuid from "uuid";
 import * as FormData from "form-data";
+import * as nodeFetch from "node-fetch";
 import { WebResource } from "../webResource";
 import { Constants } from "./constants";
 import { RestError } from "../restError";
@@ -74,7 +75,7 @@ export function encodeUri(uri: string) {
  *
  * @return {object} strippedResponse - The stripped version of Http Response.
  */
-export function stripResponse(response: Response) {
+export function stripResponse(response: Response | nodeFetch.Response) {
   const strippedResponse: any = {};
   strippedResponse.body = response.body;
   strippedResponse.headers = response.headers;
@@ -294,7 +295,7 @@ export async function dispatchRequest(options: WebResource): Promise<HttpOperati
       options.headers["Content-Type"] = `multipart/form-data; boundary=${requestForm.getBoundary()}`;
     }
   }
-  let res: Response;
+  let res;
   try {
     res = await myFetch(options.url, options);
   } catch (err) {

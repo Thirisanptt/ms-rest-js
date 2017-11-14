@@ -1,4 +1,5 @@
 import { WebResource } from "./webResource";
+import * as nodeFetch from "node-fetch";
 /**
  * Wrapper object for http request and response. Deserialized object is stored in
  * the `bodyAsJson` property when the response body is received in JSON.
@@ -14,7 +15,7 @@ export declare class HttpOperationResponse {
     /**
      * The raw response. Please use the response directly when the response body is a ReadableStream.
      */
-    response: Response;
+    response: Response | nodeFetch.Response;
     /**
      * The response body as text (string format)
      */
@@ -25,5 +26,5 @@ export declare class HttpOperationResponse {
     bodyAsJson: {
         [key: string]: any;
     } | Array<any> | string | number | boolean | null | void;
-    constructor(request: WebResource, response: Response);
+    constructor(request: WebResource, response: Response | nodeFetch.Response);
 }

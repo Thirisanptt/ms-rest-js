@@ -6,3 +6,4 @@ test/
 .gitignore
 gulpfile.js
 .git
+typings/test/**/*/d.ts

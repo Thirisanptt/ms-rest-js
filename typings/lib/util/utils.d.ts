@@ -1,3 +1,4 @@
+import * as nodeFetch from "node-fetch";
 import { WebResource } from "../webResource";
 import { RestError } from "../restError";
 import { HttpOperationResponse } from "../httpOperationResponse";
@@ -41,7 +42,7 @@ export declare function encodeUri(uri: string): string;
  *
  * @return {object} strippedResponse - The stripped version of Http Response.
  */
-export declare function stripResponse(response: Response): any;
+export declare function stripResponse(response: Response | nodeFetch.Response): any;
 /**
  * Returns a stripped version of the Http Request that does not contain the
  * Authorization header.

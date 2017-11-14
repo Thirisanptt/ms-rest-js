@@ -1,3 +1,6 @@
+### 0.2.4 - 2017-11-14
+- `HttpOperationResponse.response` can be of type `Response` (browser) | `nodeFetch.Response`
+
 ### 0.2.3 - 2017-10-25
 - We will return the actual response when the return type of a method in the generated code is `stream`.
 Hence, removing `bodyAsStream` property from `HttpOperationResponse`.

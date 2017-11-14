@@ -84,3 +84,6 @@ SdkCodeGen
 output/*
 
 # Typescript output
+doc/*
+
+typings/test/**/*.d.ts

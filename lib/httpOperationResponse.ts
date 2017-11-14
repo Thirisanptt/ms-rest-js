@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 import { WebResource } from "./webResource";
+import * as nodeFetch from "node-fetch";
 
 /**
  * Wrapper object for http request and response. Deserialized object is stored in
@@ -18,7 +19,7 @@ export class HttpOperationResponse {
   /**
    * The raw response. Please use the response directly when the response body is a ReadableStream.
    */
-  response: Response;
+  response: Response | nodeFetch.Response;
   /**
    * The response body as text (string format)
    */
@@ -28,7 +29,7 @@ export class HttpOperationResponse {
    */
   bodyAsJson: { [key: string]: any } | Array<any> | string | number | boolean | null | void;
 
-  constructor(request: WebResource, response: Response) {
+  constructor(request: WebResource, response: Response | nodeFetch.Response) {
     /**
      * Reference to the original request object.
      * [WebResource] object.
@@ -41,7 +42,7 @@ export class HttpOperationResponse {
      * [ServerResponse] object.
      * @type {object}
      */
-    this.response = response;
+    this.response = response as any;
     /* tslint:disable:no-null-keyword */
     this.bodyAsText = null;
     this.bodyAsJson = null;
