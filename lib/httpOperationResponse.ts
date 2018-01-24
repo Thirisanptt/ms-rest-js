@@ -2,7 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 import { WebResource } from "./webResource";
-
+import { RestReadableStream } from "./restReadableStream";
 /**
  * Wrapper object for http request and response. Deserialized object is stored in
  * the `body` property.
@@ -22,7 +22,7 @@ export class HttpOperationResponse {
   /**
    * The response body as a readable stream
    */
-  bodyAsStream: ReadableStream | null;
+  bodyAsStream: RestReadableStream | null;
   /**
    * The response body as text (string format)
    */
@@ -32,7 +32,7 @@ export class HttpOperationResponse {
    */
   bodyAsJson: { [key: string]: any } | Array<any> | string | number | boolean | null | void;
 
-  constructor(request: WebResource, response: Response, body: ReadableStream | null) {
+  constructor(request: WebResource, response: Response, body: RestReadableStream | null) {
     /**
      * Reference to the original request object.
      * [WebResource] object.

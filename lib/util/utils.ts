@@ -7,6 +7,7 @@ import { WebResource } from "../webResource";
 import { Constants } from "./constants";
 import { RestError } from "../restError";
 import { HttpOperationResponse } from "../httpOperationResponse";
+import { RestReadableStream } from "../restReadableStream";
 
 /**
  * Provides the fetch() method based on the environment.
@@ -298,7 +299,7 @@ export async function dispatchRequest(options: WebResource): Promise<HttpOperati
   } catch (err) {
     return Promise.reject(err);
   }
-  const operationResponse = new HttpOperationResponse(options, res, res.body);
+  const operationResponse = new HttpOperationResponse(options, res, new RestReadableStream(res));
   if (!options.rawResponse) {
     try {
       operationResponse.bodyAsText = await res.text();

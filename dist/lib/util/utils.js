@@ -16,6 +16,7 @@ const webResource_1 = require("../webResource");
 const constants_1 = require("./constants");
 const restError_1 = require("../restError");
 const httpOperationResponse_1 = require("../httpOperationResponse");
+const restReadableStream_1 = require("../restReadableStream");
 /**
  * Provides the fetch() method based on the environment.
  * @returns {fetch} fetch - The fetch() method available in the environment to make requests
@@ -299,7 +300,7 @@ function dispatchRequest(options) {
         catch (err) {
             return Promise.reject(err);
         }
-        const operationResponse = new httpOperationResponse_1.HttpOperationResponse(options, res, res.body);
+        const operationResponse = new httpOperationResponse_1.HttpOperationResponse(options, res, new restReadableStream_1.RestReadableStream(res));
         if (!options.rawResponse) {
             try {
                 operationResponse.bodyAsText = yield res.text();
